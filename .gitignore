@@ -1,0 +1,28 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Local tooling
+.codex/
+AGENTS.md
+
+# Data and build artifacts
+*.tmp
+*.log
