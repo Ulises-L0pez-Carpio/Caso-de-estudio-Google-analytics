@@ -66,6 +66,17 @@ def build_metrics(analysis: pd.DataFrame, users: pd.DataFrame) -> dict[str, obje
         .round(2)
     )
     segment_counts = users["user_segment"].value_counts().sort_index()
+    segment_summary = (
+        users.groupby("user_segment", observed=True)
+        .agg(
+            usuarios=("user_id", "nunique"),
+            pasos_promedio=("avg_steps", "mean"),
+            minutos_activos_promedio=("avg_active_minutes", "mean"),
+            sueno_promedio=("avg_sleep_hours", "mean"),
+            pct_dias_10k=("pct_days_meeting_10000_steps", "mean"),
+        )
+        .round(2)
+    )
     corr = analysis[["total_steps", "calories", "active_minutes", "sedentary_minutes", "sleep_hours"]].corr(
         numeric_only=True
     )
@@ -90,6 +101,7 @@ def build_metrics(analysis: pd.DataFrame, users: pd.DataFrame) -> dict[str, obje
         "by_day": by_day,
         "sleep_by_day": sleep_by_day,
         "segment_counts": segment_counts,
+        "segment_summary": segment_summary,
     }
 
 
@@ -156,9 +168,19 @@ def write_analysis_report(metrics: dict[str, object]) -> None:
 
 
 def write_case_study(metrics: dict[str, object]) -> None:
+    segment_rows = "\n".join(
+        f"| {idx} | {row.usuarios:.0f} | {row.pasos_promedio:,.0f} | {row.minutos_activos_promedio:,.1f} | {row.sueno_promedio:,.2f} | {row.pct_dias_10k:.1%} |"
+        for idx, row in metrics["segment_summary"].iterrows()
+    )
     report = f"""# Caso de estudio: Bellabeat
 
-## Ask
+## Resumen ejecutivo
+
+Bellabeat busca convertir datos de uso de dispositivos inteligentes en decisiones de marketing más precisas. Para este caso se analizaron datos públicos de Fitbit como proxy de comportamiento de usuarios de wearables. El análisis cubre {metrics["records"]:,} registros diarios de {metrics["users"]:,} usuarios entre {metrics["date_min"]} y {metrics["date_max"]}.
+
+Los usuarios registran en promedio {metrics["avg_steps"]:,.0f} pasos diarios, {metrics["avg_active_minutes"]:,.1f} minutos activos, {metrics["avg_sedentary_minutes"]:,.1f} minutos sedentarios y {metrics["avg_sleep_hours"]:,.2f} horas de sueño cuando existe registro. Solo {metrics["pct_10000_days"]}% de los días alcanzan 10,000 pasos, lo que abre una oportunidad clara para campañas de metas progresivas, recordatorios y retos semanales.
+
+## Ask: problema de negocio
 
 Bellabeat necesita identificar tendencias en el uso de dispositivos inteligentes para orientar su estrategia de marketing. La tarea de negocio es transformar datos de actividad y sueño de usuarios de Fitbit en recomendaciones accionables para productos de bienestar como Leaf, Time y la app de Bellabeat.
 
@@ -168,7 +190,7 @@ Preguntas que guían el análisis:
 - Cómo pueden aplicarse esas tendencias a clientes potenciales de Bellabeat.
 - Cómo pueden influir los hallazgos en campañas, mensajes y segmentación de marketing.
 
-## Prepare
+## Prepare: fuente y alcance
 
 Se utilizaron datos públicos de Fitbit disponibles en `data/raw/`. El dataset se usa como proxy de comportamiento de usuarios de dispositivos inteligentes, no como información real de clientes Bellabeat. La evaluación completa está documentada en `reports/prepare_data_assessment.md`.
 
@@ -179,7 +201,9 @@ Limitaciones clave:
 - Datos de 2016.
 - Cobertura desigual entre actividad y sueño.
 
-## Process
+Estas limitaciones obligan a mantener el análisis en términos de patrones observados. No se hacen inferencias demográficas ni conclusiones causales.
+
+## Process: limpieza y modelado
 
 La limpieza se realizó con `scripts/prepare_fitbit_data.py`. El flujo combina actividad diaria, limpia sueño diario, normaliza columnas, calcula variables derivadas y genera datasets listos para análisis y Power BI.
 
@@ -190,7 +214,16 @@ Archivos principales:
 - `data/processed/bellabeat_analysis_dataset.csv`
 - `data/processed/user_segments.csv`
 
-## Analyze
+Variables analíticas creadas:
+
+- `active_minutes`: suma de minutos muy activos, moderados y ligeros.
+- `sedentary_ratio`: proporción de minutos sedentarios sobre minutos registrados.
+- `activity_level`: clasificación diaria por pasos.
+- `meets_10000_steps`: indicador de días con al menos 10,000 pasos.
+- `sleep_hours` y `sleep_efficiency`: métricas de descanso.
+- `day_order`: orden numérico para visualizar días correctamente en Power BI.
+
+## Analyze: hallazgos
 
 El análisis explora {metrics["records"]:,} registros diarios de {metrics["users"]:,} usuarios entre {metrics["date_min"]} y {metrics["date_max"]}. Los usuarios registran en promedio {metrics["avg_steps"]:,.0f} pasos diarios, {metrics["avg_active_minutes"]:,.1f} minutos activos y {metrics["avg_sedentary_minutes"]:,.1f} minutos sedentarios.
 
@@ -201,9 +234,15 @@ Hallazgos principales:
 - **{metrics["top_day"]}** muestra el mayor promedio de pasos y **{metrics["low_day"]}** el menor, por lo que el momento de la semana puede orientar mensajes.
 - El sueño promedio observado es de {metrics["avg_sleep_hours"]:,.2f} horas en registros disponibles, con cobertura menor que actividad.
 
-## Share
+Resumen por segmento:
 
-El dashboard final en Power BI debe construirse a partir de `data/processed/bellabeat_analysis_dataset.csv` y `data/processed/user_segments.csv`.
+| Segmento | Usuarios | Pasos promedio | Minutos activos promedio | Sueño promedio | Promedio de días 10k |
+| --- | ---: | ---: | ---: | ---: | ---: |
+{segment_rows}
+
+## Share: comunicación visual
+
+El dashboard final en Power BI debe construirse a partir de `data/processed/bellabeat_analysis_dataset.csv` y `data/processed/user_segments.csv`. La guía detallada está en `dashboard/guia_dashboard_powerbi.md`.
 
 Vistas recomendadas:
 
@@ -212,7 +251,7 @@ Vistas recomendadas:
 - Segmentos: usuarios por nivel de actividad.
 - Implicaciones de negocio: hallazgos y recomendaciones.
 
-## Act
+## Act: recomendaciones de marketing
 
 Recomendaciones para Bellabeat:
 
@@ -221,6 +260,13 @@ Recomendaciones para Bellabeat:
 3. Diseñar retos semanales ajustados al comportamiento observado, reforzando los días con menor actividad.
 4. Usar la app de Bellabeat para contenido educativo personalizado sobre hábitos saludables y seguimiento del progreso.
 5. Validar estas recomendaciones con datos propios de Bellabeat o pruebas A/B antes de escalar campañas.
+
+## Siguientes pasos
+
+- Construir el dashboard final en Power BI siguiendo `dashboard/guia_dashboard_powerbi.md`.
+- Exportar las cuatro páginas como PNG en `dashboard/exports/`.
+- Validar recomendaciones con datos propios de Bellabeat si estuvieran disponibles.
+- Incorporar variables demográficas o encuestas para mejorar la segmentación.
 """
     (REPORTS_DIR / "caso_estudio_bellabeat.md").write_text(report, encoding="utf-8")
 
@@ -228,25 +274,186 @@ Recomendaciones para Bellabeat:
 def write_dashboard_readme() -> None:
     dashboard_readme = """# Dashboard Power BI
 
-## Fuente recomendada
+Esta carpeta contiene la guía y los artefactos del dashboard final del caso Bellabeat.
 
-Construir el dashboard desde estos archivos procesados:
+## Archivos esperados
+
+- `guia_dashboard_powerbi.md`: instrucciones exactas para construir el dashboard en Power BI.
+- `powerbi/bellabeat_dashboard.pbix`: archivo editable de Power BI cuando se construya manualmente.
+- `exports/`: capturas PNG de las páginas finales del dashboard.
+
+## Fuente del dashboard
+
+Usar únicamente estos archivos procesados:
 
 - `data/processed/bellabeat_analysis_dataset.csv`
 - `data/processed/user_segments.csv`
 
-## Paginas sugeridas
+## Páginas esperadas
 
 1. **Resumen ejecutivo**: KPIs de pasos, calorías, minutos activos, sueño y usuarios.
 2. **Actividad**: tendencias por día de la semana, distribución de pasos y segmentos.
 3. **Sueño**: horas dormidas, tiempo en cama y eficiencia.
-4. **Recomendaciones**: hallazgos clave traducidos a acciones de marketing.
+4. **Segmentos y recomendaciones**: segmentación de usuarios y acciones de marketing.
 
 ## Evidencia exportada
 
-Las capturas finales del dashboard deben guardarse en `dashboard/exports/` para que el portafolio sea visible aunque el archivo `.pbix` no se pueda previsualizar en GitHub.
+Las capturas finales deben guardarse como:
+
+- `exports/01_resumen_ejecutivo.png`
+- `exports/02_actividad.png`
+- `exports/03_sueno.png`
+- `exports/04_segmentos_recomendaciones.png`
 """
     (DASHBOARD_DIR / "README.md").write_text(dashboard_readme, encoding="utf-8")
+
+
+def write_dashboard_guide() -> None:
+    guide = """# Guía para construir el dashboard en Power BI
+
+## Objetivo
+
+Construir un dashboard ejecutivo para comunicar los principales patrones de actividad, sueño y segmentación observados en el caso Bellabeat. El dashboard debe permitir explicar los hallazgos a una audiencia de negocio y conectar cada visual con una recomendación de marketing.
+
+## Archivos a importar
+
+Importar solo estos CSV procesados:
+
+- `data/processed/bellabeat_analysis_dataset.csv`
+- `data/processed/user_segments.csv`
+
+No usar archivos de `data/raw/` en Power BI. La limpieza y transformación ya están documentadas y reproducidas en Python.
+
+## Modelo de datos
+
+Crear la relación:
+
+- `user_segments[user_id]` 1:* `bellabeat_analysis_dataset[user_id]`
+
+Configurar tipos de datos:
+
+- `user_id`: texto
+- `activity_date`: fecha
+- `day_of_week`, `activity_level`, `user_segment`: texto/categoría
+- `day_order`: número entero
+- `meets_10000_steps`: verdadero/falso
+- pasos, calorías, minutos, horas, ratios y eficiencia: numérico decimal o entero según corresponda
+
+Ordenar `day_of_week` por `day_order` desde la vista de datos.
+
+## Medidas DAX
+
+Crear estas medidas en Power BI:
+
+```DAX
+Usuarios = DISTINCTCOUNT(bellabeat_analysis_dataset[user_id])
+
+Registros diarios = COUNTROWS(bellabeat_analysis_dataset)
+
+Pasos promedio = AVERAGE(bellabeat_analysis_dataset[total_steps])
+
+Calorías promedio = AVERAGE(bellabeat_analysis_dataset[calories])
+
+Minutos activos promedio = AVERAGE(bellabeat_analysis_dataset[active_minutes])
+
+Minutos sedentarios promedio = AVERAGE(bellabeat_analysis_dataset[sedentary_minutes])
+
+Horas de sueño promedio = AVERAGE(bellabeat_analysis_dataset[sleep_hours])
+
+Eficiencia de sueño promedio = AVERAGE(bellabeat_analysis_dataset[sleep_efficiency])
+
+% días 10k pasos = AVERAGE(bellabeat_analysis_dataset[meets_10000_steps])
+
+Usuarios con sueño = CALCULATE(
+    DISTINCTCOUNT(bellabeat_analysis_dataset[user_id]),
+    NOT(ISBLANK(bellabeat_analysis_dataset[sleep_hours]))
+)
+```
+
+Formatear `% días 10k pasos` como porcentaje.
+
+## Página 1: Resumen ejecutivo
+
+Objetivo: dar una lectura rápida del caso y de los indicadores principales.
+
+Visuales:
+
+- Tarjetas KPI: `Usuarios`, `Registros diarios`, `Pasos promedio`, `Calorías promedio`, `Minutos activos promedio`, `Horas de sueño promedio`.
+- Gráfico de barras: eje `day_of_week`, valor `Pasos promedio`.
+- Segmentadores: `activity_date`, `activity_level`, `user_segment`.
+- Caja de texto con tres hallazgos:
+  - El promedio diario de pasos queda por debajo de 10,000.
+  - La actividad varía por segmento y día de la semana.
+  - El sueño tiene menor cobertura, pero aporta una línea clara de comunicación sobre bienestar integral.
+
+## Página 2: Actividad
+
+Objetivo: explicar patrones de movimiento, calorías y sedentarismo.
+
+Visuales:
+
+- Línea: eje `activity_date`, valor `Pasos promedio`.
+- Barras: eje `day_of_week`, valor `Minutos activos promedio`.
+- Barras apiladas: valores `very_active_minutes`, `fairly_active_minutes`, `lightly_active_minutes`, `sedentary_minutes`.
+- Dispersión: eje X `total_steps`, eje Y `calories`, leyenda `activity_level`.
+- Segmentador: `activity_level`.
+
+Mensaje esperado: Bellabeat puede segmentar campañas según intensidad de uso y diseñar retos de actividad progresiva.
+
+## Página 3: Sueño
+
+Objetivo: comunicar la relación entre descanso, actividad y bienestar.
+
+Visuales:
+
+- Tarjetas KPI: `Horas de sueño promedio`, `Eficiencia de sueño promedio`, `Usuarios con sueño`.
+- Barras: eje `day_of_week`, valor `Horas de sueño promedio`.
+- Dispersión: eje X `total_steps`, eje Y `sleep_hours`.
+- Tabla: `user_id`, promedio de `total_steps`, promedio de `sleep_hours`, promedio de `sleep_efficiency`.
+- Nota visible: la cobertura de sueño es menor que la de actividad, por lo que las conclusiones deben tomarse como indicios, no como afirmaciones causales.
+
+Mensaje esperado: Bellabeat puede reforzar una narrativa de bienestar integral: movimiento, descanso y consistencia.
+
+## Página 4: Segmentos y recomendaciones
+
+Objetivo: convertir hallazgos en acciones de marketing.
+
+Visuales:
+
+- Barras: eje `user_segment`, valor `Usuarios`.
+- Matriz por `user_segment`: promedio de `avg_steps`, `avg_active_minutes`, `avg_sleep_hours`, `pct_days_meeting_10000_steps`.
+- Panel de recomendaciones:
+  - `baja_actividad`: metas pequeñas, recordatorios suaves y contenido educativo.
+  - `actividad_ligera`: retos semanales simples y mensajes de progreso.
+  - `actividad_media`: campañas de consistencia y logros.
+  - `alta_actividad`: retos avanzados, comunidad y recompensas.
+  - sueño: mensajes de descanso y bienestar integral.
+
+## Exportación
+
+Guardar el archivo editable como:
+
+- `dashboard/powerbi/bellabeat_dashboard.pbix`
+
+Exportar capturas PNG como:
+
+- `dashboard/exports/01_resumen_ejecutivo.png`
+- `dashboard/exports/02_actividad.png`
+- `dashboard/exports/03_sueno.png`
+- `dashboard/exports/04_segmentos_recomendaciones.png`
+
+Estas capturas serán la evidencia principal del dashboard en GitHub.
+
+## Checklist final
+
+- Los dos CSV importados provienen de `data/processed/`.
+- `day_of_week` está ordenado por `day_order`.
+- La relación por `user_id` está activa.
+- Las medidas DAX calculan sin errores.
+- Las cuatro páginas tienen título, KPIs o visuales centrales y una lectura de negocio.
+- Las capturas exportadas están en `dashboard/exports/`.
+"""
+    (DASHBOARD_DIR / "guia_dashboard_powerbi.md").write_text(guide, encoding="utf-8")
 
 
 def main() -> None:
@@ -259,6 +466,7 @@ def main() -> None:
     write_analysis_report(metrics)
     write_case_study(metrics)
     write_dashboard_readme()
+    write_dashboard_guide()
 
     print("Analyzed Fitbit data successfully.")
     print(f"Users={metrics['users']:,}, records={metrics['records']:,}, avg_steps={metrics['avg_steps']:,.0f}")

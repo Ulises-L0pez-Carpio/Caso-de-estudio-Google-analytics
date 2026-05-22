@@ -1,19 +1,32 @@
 # Dashboard Power BI
 
-## Fuente recomendada
+Esta carpeta contiene la guía y los artefactos del dashboard final del caso Bellabeat.
 
-Construir el dashboard desde estos archivos procesados:
+## Archivos esperados
+
+- `guia_dashboard_powerbi.md`: instrucciones exactas para construir el dashboard en Power BI.
+- `powerbi/bellabeat_dashboard.pbix`: archivo editable de Power BI cuando se construya manualmente.
+- `exports/`: capturas PNG de las páginas finales del dashboard.
+
+## Fuente del dashboard
+
+Usar únicamente estos archivos procesados:
 
 - `data/processed/bellabeat_analysis_dataset.csv`
 - `data/processed/user_segments.csv`
 
-## Paginas sugeridas
+## Páginas esperadas
 
 1. **Resumen ejecutivo**: KPIs de pasos, calorías, minutos activos, sueño y usuarios.
 2. **Actividad**: tendencias por día de la semana, distribución de pasos y segmentos.
 3. **Sueño**: horas dormidas, tiempo en cama y eficiencia.
-4. **Recomendaciones**: hallazgos clave traducidos a acciones de marketing.
+4. **Segmentos y recomendaciones**: segmentación de usuarios y acciones de marketing.
 
 ## Evidencia exportada
 
-Las capturas finales del dashboard deben guardarse en `dashboard/exports/` para que el portafolio sea visible aunque el archivo `.pbix` no se pueda previsualizar en GitHub.
+Las capturas finales deben guardarse como:
+
+- `exports/01_resumen_ejecutivo.png`
+- `exports/02_actividad.png`
+- `exports/03_sueno.png`
+- `exports/04_segmentos_recomendaciones.png`

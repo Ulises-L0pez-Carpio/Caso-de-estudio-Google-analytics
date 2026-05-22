@@ -28,6 +28,16 @@ DAY_NAMES_ES = {
     "Sunday": "domingo",
 }
 
+DAY_ORDER_ES = {
+    "lunes": 1,
+    "martes": 2,
+    "miércoles": 3,
+    "jueves": 4,
+    "viernes": 5,
+    "sábado": 6,
+    "domingo": 7,
+}
+
 
 def snake_case(name: str) -> str:
     name = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", name)
@@ -112,6 +122,7 @@ def clean_daily_activity() -> pd.DataFrame:
         activity["sedentary_minutes"] / activity["tracked_minutes"].replace(0, pd.NA)
     ).round(4)
     activity["day_of_week"] = pd.to_datetime(activity["activity_date"]).dt.day_name().map(DAY_NAMES_ES)
+    activity["day_order"] = activity["day_of_week"].map(DAY_ORDER_ES)
     activity["activity_level"] = pd.cut(
         activity["total_steps"],
         bins=[-1, 4999, 7499, 9999, float("inf")],
@@ -135,6 +146,7 @@ def clean_sleep_daily() -> pd.DataFrame:
         sleep["total_minutes_asleep"] / sleep["total_time_in_bed"].replace(0, pd.NA)
     ).round(4)
     sleep["day_of_week"] = pd.to_datetime(sleep["sleep_date"]).dt.day_name().map(DAY_NAMES_ES)
+    sleep["day_order"] = sleep["day_of_week"].map(DAY_ORDER_ES)
     return sleep
 
 
@@ -146,7 +158,9 @@ def build_analysis_dataset(activity: pd.DataFrame, sleep: pd.DataFrame) -> pd.Da
         right_on=["id", "sleep_date"],
         suffixes=("", "_sleep"),
     )
-    analysis = analysis.drop(columns=["sleep_date", "source_period_sleep", "source_file_sleep", "day_of_week_sleep"])
+    analysis = analysis.drop(
+        columns=["sleep_date", "source_period_sleep", "source_file_sleep", "day_of_week_sleep", "day_order_sleep"]
+    )
     analysis = analysis.rename(columns={"id": "user_id"})
     return analysis
 
@@ -246,7 +260,7 @@ def write_cleaning_log(activity: pd.DataFrame, sleep: pd.DataFrame, analysis: pd
 - Se normalizaron nombres de columnas a `snake_case`.
 - Se convirtieron fechas de actividad y sueño a tipo fecha.
 - Se eliminaron duplicados por usuario y fecha en actividad diaria y sueño diario.
-- Se calcularon variables derivadas: `active_minutes`, `tracked_minutes`, `sedentary_ratio`, `activity_level`, `meets_10000_steps`, `sleep_hours`, `time_in_bed_hours` y `sleep_efficiency`.
+- Se calcularon variables derivadas: `active_minutes`, `tracked_minutes`, `sedentary_ratio`, `activity_level`, `meets_10000_steps`, `sleep_hours`, `time_in_bed_hours`, `sleep_efficiency` y `day_order`.
 - Se unieron actividad y sueño por `user_id` y fecha para crear `bellabeat_analysis_dataset.csv`.
 
 ## Archivos generados

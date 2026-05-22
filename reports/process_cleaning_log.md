@@ -6,7 +6,7 @@
 - Se normalizaron nombres de columnas a `snake_case`.
 - Se convirtieron fechas de actividad y sueño a tipo fecha.
 - Se eliminaron duplicados por usuario y fecha en actividad diaria y sueño diario.
-- Se calcularon variables derivadas: `active_minutes`, `tracked_minutes`, `sedentary_ratio`, `activity_level`, `meets_10000_steps`, `sleep_hours`, `time_in_bed_hours` y `sleep_efficiency`.
+- Se calcularon variables derivadas: `active_minutes`, `tracked_minutes`, `sedentary_ratio`, `activity_level`, `meets_10000_steps`, `sleep_hours`, `time_in_bed_hours`, `sleep_efficiency` y `day_order`.
 - Se unieron actividad y sueño por `user_id` y fecha para crear `bellabeat_analysis_dataset.csv`.
 
 ## Archivos generados
