@@ -242,7 +242,7 @@ Resumen por segmento:
 
 ## Share: comunicación visual
 
-El dashboard final en Power BI fue construido a partir de `data/processed/bellabeat_analysis_dataset.csv` y `data/processed/user_segments.csv`. La guía técnica de construcción se conserva en `dashboard/guia_dashboard_powerbi.md` y el archivo editable está disponible en `dashboard/powerbi/bellabeat_dashboard.pbix`.
+El dashboard final en Power BI fue construido a partir de `data/processed/bellabeat_analysis_dataset.csv` y `data/processed/user_segments.csv`. El archivo editable está disponible en `dashboard/powerbi/bellabeat_dashboard.pbix`.
 
 Vistas incluidas:
 
@@ -253,10 +253,10 @@ Vistas incluidas:
 
 Capturas exportadas:
 
-- `dashboard/exports/01_resumen_ejecutivo.png`
-- `dashboard/exports/02_actividad.png`
-- `dashboard/exports/03_sueno.png`
-- `dashboard/exports/04_segmentos_recomendaciones.png`
+- `dashboard/assets/01_resumen_ejecutivo.png`
+- `dashboard/assets/02_actividad.png`
+- `dashboard/assets/03_sueno.png`
+- `dashboard/assets/04_segmentos_recomendaciones.png`
 
 ## Act: recomendaciones de marketing
 
@@ -281,14 +281,12 @@ Recomendaciones para Bellabeat:
 def write_dashboard_readme() -> None:
     dashboard_readme = """# Dashboard Power BI
 
-Esta carpeta contiene la guía y los artefactos del dashboard final del caso Bellabeat.
+Esta carpeta contiene los artefactos públicos del dashboard final del caso Bellabeat.
 
 ## Archivos incluidos
 
-- `guia_dashboard_powerbi.md`: instrucciones exactas para construir el dashboard en Power BI.
 - `powerbi/bellabeat_dashboard.pbix`: archivo editable de Power BI.
-- `powerbi/proyect/bellabeat_dashboard.pbip`: proyecto Power BI en formato PBIP.
-- `exports/`: capturas PNG de las páginas finales del dashboard.
+- `assets/`: capturas PNG de las páginas finales del dashboard.
 
 ## Fuente del dashboard
 
@@ -308,12 +306,12 @@ Usar únicamente estos archivos procesados:
 
 Capturas finales:
 
-- `exports/01_resumen_ejecutivo.png`
-- `exports/02_actividad.png`
-- `exports/03_sueno.png`
-- `exports/04_segmentos_recomendaciones.png`
+- `assets/01_resumen_ejecutivo.png`
+- `assets/02_actividad.png`
+- `assets/03_sueno.png`
+- `assets/04_segmentos_recomendaciones.png`
 
-![Resumen ejecutivo](exports/01_resumen_ejecutivo.png)
+![Resumen ejecutivo](assets/01_resumen_ejecutivo.png)
 """
     (DASHBOARD_DIR / "README.md").write_text(dashboard_readme, encoding="utf-8")
 
@@ -447,10 +445,10 @@ Guardar el archivo editable como:
 
 Exportar capturas PNG como:
 
-- `dashboard/exports/01_resumen_ejecutivo.png`
-- `dashboard/exports/02_actividad.png`
-- `dashboard/exports/03_sueno.png`
-- `dashboard/exports/04_segmentos_recomendaciones.png`
+- `dashboard/assets/01_resumen_ejecutivo.png`
+- `dashboard/assets/02_actividad.png`
+- `dashboard/assets/03_sueno.png`
+- `dashboard/assets/04_segmentos_recomendaciones.png`
 
 Estas capturas serán la evidencia principal del dashboard en GitHub.
 
@@ -461,7 +459,7 @@ Estas capturas serán la evidencia principal del dashboard en GitHub.
 - La relación por `user_id` está activa.
 - Las medidas DAX calculan sin errores.
 - Las cuatro páginas tienen título, KPIs o visuales centrales y una lectura de negocio.
-- Las capturas exportadas están en `dashboard/exports/`.
+- Las capturas exportadas están en `dashboard/assets/`.
 """
     (DASHBOARD_DIR / "guia_dashboard_powerbi.md").write_text(guide, encoding="utf-8")
 

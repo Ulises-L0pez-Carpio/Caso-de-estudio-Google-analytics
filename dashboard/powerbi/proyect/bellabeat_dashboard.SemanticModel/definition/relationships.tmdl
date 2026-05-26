@@ -1,9 +1,0 @@
-relationship 1911bf4b-95b3-4ca4-b6d4-bae248d07d41
-	joinOnDateBehavior: datePartOnly
-	fromColumn: bellabeat_analysis_dataset.activity_date
-	toColumn: LocalDateTable_89669211-9951-41e6-906c-2a100f7df40a.Date
-
-relationship AutoDetected_b2ceb9f0-bae2-4314-9d1a-aec0be6e6426
-	fromColumn: bellabeat_analysis_dataset.user_id
-	toColumn: user_segments.user_id
-

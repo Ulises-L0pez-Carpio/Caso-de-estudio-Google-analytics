@@ -27,6 +27,8 @@ AGENTS.md
 **/.pbi/cache.abf
 **/.pbi/localSettings.json
 **/.pbi/editorSettings.json
+dashboard/powerbi/proyect/
+dashboard/guia_dashboard_powerbi.md
 
 # Data and build artifacts
 *.tmp

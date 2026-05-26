@@ -71,7 +71,7 @@ Resumen por segmento:
 
 ## Share: comunicación visual
 
-El dashboard final en Power BI fue construido a partir de `data/processed/bellabeat_analysis_dataset.csv` y `data/processed/user_segments.csv`. La guía técnica de construcción se conserva en `dashboard/guia_dashboard_powerbi.md` y el archivo editable está disponible en `dashboard/powerbi/bellabeat_dashboard.pbix`.
+El dashboard final en Power BI fue construido a partir de `data/processed/bellabeat_analysis_dataset.csv` y `data/processed/user_segments.csv`. El archivo editable está disponible en `dashboard/powerbi/bellabeat_dashboard.pbix`.
 
 Vistas incluidas:
 
@@ -82,10 +82,10 @@ Vistas incluidas:
 
 Capturas exportadas:
 
-- `dashboard/exports/01_resumen_ejecutivo.png`
-- `dashboard/exports/02_actividad.png`
-- `dashboard/exports/03_sueno.png`
-- `dashboard/exports/04_segmentos_recomendaciones.png`
+- `dashboard/assets/01_resumen_ejecutivo.png`
+- `dashboard/assets/02_actividad.png`
+- `dashboard/assets/03_sueno.png`
+- `dashboard/assets/04_segmentos_recomendaciones.png`
 
 ## Act: recomendaciones de marketing
 

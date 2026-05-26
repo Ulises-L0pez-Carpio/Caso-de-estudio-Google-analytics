@@ -80,17 +80,15 @@ El dashboard final fue construido en Power BI Desktop usando únicamente:
 Artefactos principales:
 
 - Archivo editable: [`dashboard/powerbi/bellabeat_dashboard.pbix`](dashboard/powerbi/bellabeat_dashboard.pbix)
-- Proyecto Power BI: [`dashboard/powerbi/proyect/bellabeat_dashboard.pbip`](dashboard/powerbi/proyect/bellabeat_dashboard.pbip)
-- Guía de construcción: [`dashboard/guia_dashboard_powerbi.md`](dashboard/guia_dashboard_powerbi.md)
 
 Capturas finales:
 
-- [`Resumen ejecutivo`](dashboard/exports/01_resumen_ejecutivo.png)
-- [`Actividad`](dashboard/exports/02_actividad.png)
-- [`Sueño`](dashboard/exports/03_sueno.png)
-- [`Segmentos y recomendaciones`](dashboard/exports/04_segmentos_recomendaciones.png)
+- [`Resumen ejecutivo`](dashboard/assets/01_resumen_ejecutivo.png)
+- [`Actividad`](dashboard/assets/02_actividad.png)
+- [`Sueño`](dashboard/assets/03_sueno.png)
+- [`Segmentos y recomendaciones`](dashboard/assets/04_segmentos_recomendaciones.png)
 
-![Resumen ejecutivo del dashboard](dashboard/exports/01_resumen_ejecutivo.png)
+![Resumen ejecutivo del dashboard](dashboard/assets/01_resumen_ejecutivo.png)
 
 ## Visualizaciones exploratorias
 
@@ -140,10 +138,9 @@ Caso-de-exito/
 ├── scripts/
 ├── visualizations/
 ├── dashboard/
-│   ├── exports/
+│   ├── assets/
 │   ├── powerbi/
-│   ├── README.md
-│   └── guia_dashboard_powerbi.md
+│   └── README.md
 ├── reports/
 ├── requirements.txt
 └── README.md
