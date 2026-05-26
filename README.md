@@ -160,3 +160,9 @@ Caso-de-exito/
 ## Estado del proyecto
 
 Proyecto finalizado para portafolio. El repositorio incluye análisis reproducible, reportes, datos procesados, dashboard Power BI, capturas finales y recomendaciones de marketing conectadas con evidencia de datos.
+
+## Autor
+
+Ulises Lopez Carpio
+
+Matematico | Analitica de datos | SQL | Python | Power BI
