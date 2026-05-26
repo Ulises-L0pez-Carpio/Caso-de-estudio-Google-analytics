@@ -154,9 +154,6 @@ Caso-de-exito/
 - Los datos corresponden a 2016.
 - Las relaciones observadas no deben interpretarse como causalidad.
 
-## Estado del proyecto
-
-Proyecto finalizado para portafolio. El repositorio incluye análisis reproducible, reportes, datos procesados, dashboard Power BI, capturas finales y recomendaciones de marketing conectadas con evidencia de datos.
 
 ## Autor
 
