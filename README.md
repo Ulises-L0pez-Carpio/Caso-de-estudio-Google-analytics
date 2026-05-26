@@ -105,7 +105,7 @@ Capturas finales:
 - [`data/processed/user_segments.csv`](data/processed/user_segments.csv)
 - [`data/processed/raw_file_inventory.csv`](data/processed/raw_file_inventory.csv)
 
-## Habilidades demostradas
+## Habilidades Utilizadas en el proyecto
 
 - Definición de problema de negocio y preguntas analíticas.
 - Evaluación de calidad, sesgos y limitaciones de datos.
