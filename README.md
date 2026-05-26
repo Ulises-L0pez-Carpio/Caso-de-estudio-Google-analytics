@@ -160,6 +160,6 @@ Proyecto finalizado para portafolio. El repositorio incluye análisis reproducib
 
 ## Autor
 
-Ulises Lopez Carpio
+Ulises López Carpio
 
-Matematico | Analitica de datos | SQL | Python | Power BI
+Matemático | Analítica de datos | SQL | Python | Power BI
