@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "1904039a563af9e81f09",
+  "position": {
+    "x": 225.22229179711962,
+    "y": 88.966812773951162,
+    "z": 3000,
+    "height": 106.59987476518472,
+    "width": 186.75015654351913,
+    "tabOrder": 2
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "Registros diarios texto"
+                }
+              },
+              "queryRef": "Medidas.Registros diarios texto",
+              "nativeQueryRef": "Registros diarios ",
+              "displayName": "Registros diarios "
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "6649c2ee59e625657605",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Registros diarios texto"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

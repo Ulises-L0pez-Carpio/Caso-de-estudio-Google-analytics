@@ -1,0 +1,98 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "b66eed6eb9caf39fce7a",
+  "position": {
+    "x": 0,
+    "y": 205.98622417031936,
+    "z": 7000,
+    "height": 57.708202880400755,
+    "width": 181.94113963681906,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "user_segments"
+                    }
+                  },
+                  "Property": "user_segment"
+                }
+              },
+              "queryRef": "user_segments.user_segment",
+              "nativeQueryRef": "Segmento de usuario",
+              "active": true,
+              "displayName": "Segmento de usuario"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 4,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d097898f62e394f0ea0a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "user_segments"
+              }
+            },
+            "Property": "user_segment"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

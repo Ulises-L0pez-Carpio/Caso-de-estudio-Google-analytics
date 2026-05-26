@@ -1,0 +1,375 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "a628641c7b90c0929740",
+  "position": {
+    "x": 249.82778415614237,
+    "y": 440.13777267508613,
+    "z": 9000,
+    "height": 279.95407577497133,
+    "width": 545.21239954075781,
+    "tabOrder": 7002
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bellabeat_analysis_dataset"
+                    }
+                  },
+                  "Property": "Registro actividad"
+                }
+              },
+              "queryRef": "bellabeat_analysis_dataset.Registro actividad",
+              "nativeQueryRef": "Registro actividad",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bellabeat_analysis_dataset"
+                    }
+                  },
+                  "Property": "activity_level"
+                }
+              },
+              "queryRef": "bellabeat_analysis_dataset.activity_level",
+              "nativeQueryRef": "activity_level"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "bellabeat_analysis_dataset"
+                        }
+                      },
+                      "Property": "total_steps"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(bellabeat_analysis_dataset.total_steps)",
+              "nativeQueryRef": "Promedio de total_steps",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "bellabeat_analysis_dataset"
+                        }
+                      },
+                      "Property": "sleep_hours_clean"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(bellabeat_analysis_dataset.sleep_hours_clean)",
+              "nativeQueryRef": "Promedio de sleep_hours_clean"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Pasos diarios'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Horas de sueño'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Nivel de actividad'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Relación entre pasos diarios y horas de sueño'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "be20ca71f340bfb5665a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "bellabeat_analysis_dataset"
+              }
+            },
+            "Property": "activity_level"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "42cabd00236e75fbb9da",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "bellabeat_analysis_dataset"
+              }
+            },
+            "Property": "Registro actividad"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7d039e08148a36a938e6",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "bellabeat_analysis_dataset"
+                  }
+                },
+                "Property": "total_steps"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "80eeefe107f71acee29b",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "bellabeat_analysis_dataset"
+                  }
+                },
+                "Property": "sleep_hours_clean"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "b",
+              "Entity": "bellabeat_analysis_dataset",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "And": {
+                  "Left": {
+                    "Comparison": {
+                      "ComparisonKind": 4,
+                      "Left": {
+                        "Aggregation": {
+                          "Expression": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "b"
+                                }
+                              },
+                              "Property": "sleep_hours_clean"
+                            }
+                          },
+                          "Function": 1
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "16L"
+                        }
+                      }
+                    }
+                  },
+                  "Right": {
+                    "Comparison": {
+                      "ComparisonKind": 1,
+                      "Left": {
+                        "Aggregation": {
+                          "Expression": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "b"
+                                }
+                              },
+                              "Property": "sleep_hours_clean"
+                            }
+                          },
+                          "Function": 1
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "0L"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "c91be7a578cf517f3ceb",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "bellabeat_analysis_dataset"
+              }
+            },
+            "Property": "sleep_hours_clean"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "b",
+              "Entity": "bellabeat_analysis_dataset",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "And": {
+                  "Left": {
+                    "Not": {
+                      "Expression": {
+                        "Comparison": {
+                          "ComparisonKind": 0,
+                          "Left": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "b"
+                                }
+                              },
+                              "Property": "sleep_hours_clean"
+                            }
+                          },
+                          "Right": {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "Right": {
+                    "Comparison": {
+                      "ComparisonKind": 1,
+                      "Left": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "b"
+                            }
+                          },
+                          "Property": "sleep_hours_clean"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "0L"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  }
+}

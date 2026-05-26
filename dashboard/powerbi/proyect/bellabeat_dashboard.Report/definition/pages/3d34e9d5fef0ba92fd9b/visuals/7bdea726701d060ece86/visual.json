@@ -1,0 +1,96 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "7bdea726701d060ece86",
+  "position": {
+    "x": 395.31572904707235,
+    "y": 576.80826636050517,
+    "z": 12000,
+    "height": 134.46613088404135,
+    "width": 747.27898966704947,
+    "tabOrder": 11
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• El promedio diario de pasos se mantiene por debajo del objetivo de 10,000 pasos."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Sábado y martes concentran los mayores niveles promedio de actividad."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• La segmentación permite diseñar campañas diferenciadas según intensidad de uso."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Los datos de sueño complementan una narrativa de bienestar integral, aunque deben interpretarse con cautela por su menor cobertura."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Hallazgos principales'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

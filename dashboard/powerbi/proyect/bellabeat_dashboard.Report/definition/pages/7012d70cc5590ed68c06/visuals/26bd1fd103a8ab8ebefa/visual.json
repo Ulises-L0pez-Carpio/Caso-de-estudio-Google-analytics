@@ -1,0 +1,150 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "26bd1fd103a8ab8ebefa",
+  "position": {
+    "x": 249.82778415614237,
+    "y": 205.74052812858784,
+    "z": 11001,
+    "height": 249.09299655568313,
+    "width": 568.72560275545356,
+    "tabOrder": 10001
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bellabeat_analysis_dataset"
+                    }
+                  },
+                  "Property": "activity_date"
+                }
+              },
+              "queryRef": "bellabeat_analysis_dataset.activity_date",
+              "nativeQueryRef": "activity_date",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "Pasos promedio"
+                }
+              },
+              "queryRef": "Medidas.Pasos promedio",
+              "nativeQueryRef": "Pasos promedio"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "bellabeat_analysis_dataset"
+                  }
+                },
+                "Property": "activity_date"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Fecha'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Pasos promedio'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Evolución diaria de pasos promedio'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "46b84074194c72f5452b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Pasos promedio"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "3eb5d07254ab2c103fe7",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "bellabeat_analysis_dataset"
+              }
+            },
+            "Property": "activity_date"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

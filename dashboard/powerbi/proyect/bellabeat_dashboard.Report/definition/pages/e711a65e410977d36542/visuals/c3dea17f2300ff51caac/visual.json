@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "c3dea17f2300ff51caac",
+  "position": {
+    "x": 249.82778415614237,
+    "y": 89.644087256027561,
+    "z": 3000,
+    "height": 106.54420206659013,
+    "width": 275.54535017221588,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "Eficiencia de sueño promedio"
+                }
+              },
+              "queryRef": "Medidas.Eficiencia de sueño promedio",
+              "nativeQueryRef": "Eficiencia de sueño promedio",
+              "format": "0.00%;-0.00%;0.00%"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Medidas"
+                  }
+                },
+                "Property": "Eficiencia de sueño promedio"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "395f38901b6f454b7667",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Eficiencia de sueño promedio"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

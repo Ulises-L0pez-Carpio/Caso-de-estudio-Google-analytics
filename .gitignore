@@ -23,6 +23,11 @@ venv/
 .codex/
 AGENTS.md
 
+# Power BI local cache/settings
+**/.pbi/cache.abf
+**/.pbi/localSettings.json
+**/.pbi/editorSettings.json
+
 # Data and build artifacts
 *.tmp
 *.log
