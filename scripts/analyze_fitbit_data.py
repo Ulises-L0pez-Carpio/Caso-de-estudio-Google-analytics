@@ -242,14 +242,21 @@ Resumen por segmento:
 
 ## Share: comunicación visual
 
-El dashboard final en Power BI debe construirse a partir de `data/processed/bellabeat_analysis_dataset.csv` y `data/processed/user_segments.csv`. La guía detallada está en `dashboard/guia_dashboard_powerbi.md`.
+El dashboard final en Power BI fue construido a partir de `data/processed/bellabeat_analysis_dataset.csv` y `data/processed/user_segments.csv`. La guía técnica de construcción se conserva en `dashboard/guia_dashboard_powerbi.md` y el archivo editable está disponible en `dashboard/powerbi/bellabeat_dashboard.pbix`.
 
-Vistas recomendadas:
+Vistas incluidas:
 
-- Actividad diaria: pasos, calorías y minutos activos.
-- Sueño: horas dormidas, tiempo en cama y eficiencia.
-- Segmentos: usuarios por nivel de actividad.
-- Implicaciones de negocio: hallazgos y recomendaciones.
+- Resumen ejecutivo: KPIs generales, pasos por día de la semana y filtros principales.
+- Actividad: tendencias de pasos, minutos activos, sedentarismo y relación entre pasos y calorías.
+- Sueño: horas de sueño, eficiencia, usuarios con registro de sueño y relación entre actividad y descanso.
+- Segmentos y recomendaciones: perfiles de usuario y acciones de marketing sugeridas por segmento.
+
+Capturas exportadas:
+
+- `dashboard/exports/01_resumen_ejecutivo.png`
+- `dashboard/exports/02_actividad.png`
+- `dashboard/exports/03_sueno.png`
+- `dashboard/exports/04_segmentos_recomendaciones.png`
 
 ## Act: recomendaciones de marketing
 
@@ -261,12 +268,12 @@ Recomendaciones para Bellabeat:
 4. Usar la app de Bellabeat para contenido educativo personalizado sobre hábitos saludables y seguimiento del progreso.
 5. Validar estas recomendaciones con datos propios de Bellabeat o pruebas A/B antes de escalar campañas.
 
-## Siguientes pasos
+## Siguientes pasos de negocio
 
-- Construir el dashboard final en Power BI siguiendo `dashboard/guia_dashboard_powerbi.md`.
-- Exportar las cuatro páginas como PNG en `dashboard/exports/`.
 - Validar recomendaciones con datos propios de Bellabeat si estuvieran disponibles.
 - Incorporar variables demográficas o encuestas para mejorar la segmentación.
+- Diseñar pruebas A/B para medir respuesta a retos, recordatorios y mensajes de descanso.
+- Medir adopción, retención y conversión por segmento antes de escalar campañas.
 """
     (REPORTS_DIR / "caso_estudio_bellabeat.md").write_text(report, encoding="utf-8")
 
@@ -276,10 +283,11 @@ def write_dashboard_readme() -> None:
 
 Esta carpeta contiene la guía y los artefactos del dashboard final del caso Bellabeat.
 
-## Archivos esperados
+## Archivos incluidos
 
 - `guia_dashboard_powerbi.md`: instrucciones exactas para construir el dashboard en Power BI.
-- `powerbi/bellabeat_dashboard.pbix`: archivo editable de Power BI cuando se construya manualmente.
+- `powerbi/bellabeat_dashboard.pbix`: archivo editable de Power BI.
+- `powerbi/proyect/bellabeat_dashboard.pbip`: proyecto Power BI en formato PBIP.
 - `exports/`: capturas PNG de las páginas finales del dashboard.
 
 ## Fuente del dashboard
@@ -289,7 +297,7 @@ Usar únicamente estos archivos procesados:
 - `data/processed/bellabeat_analysis_dataset.csv`
 - `data/processed/user_segments.csv`
 
-## Páginas esperadas
+## Páginas del dashboard
 
 1. **Resumen ejecutivo**: KPIs de pasos, calorías, minutos activos, sueño y usuarios.
 2. **Actividad**: tendencias por día de la semana, distribución de pasos y segmentos.
@@ -298,12 +306,14 @@ Usar únicamente estos archivos procesados:
 
 ## Evidencia exportada
 
-Las capturas finales deben guardarse como:
+Capturas finales:
 
 - `exports/01_resumen_ejecutivo.png`
 - `exports/02_actividad.png`
 - `exports/03_sueno.png`
 - `exports/04_segmentos_recomendaciones.png`
+
+![Resumen ejecutivo](exports/01_resumen_ejecutivo.png)
 """
     (DASHBOARD_DIR / "README.md").write_text(dashboard_readme, encoding="utf-8")
 

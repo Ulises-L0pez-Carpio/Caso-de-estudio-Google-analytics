@@ -35,67 +35,74 @@ table bellabeat_analysis_dataset
 		annotation SummarizationSetBy = Automatic
 
 	column total_distance
-		dataType: int64
-		formatString: 0
+		dataType: double
 		lineageTag: 12763439-81d1-4852-9e2d-f2f2d9e5caa7
 		summarizeBy: sum
 		sourceColumn: total_distance
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column tracker_distance
-		dataType: int64
-		formatString: 0
+		dataType: double
 		lineageTag: d5cc959f-123f-4d0c-ae3a-05e1d98f10b5
 		summarizeBy: sum
 		sourceColumn: tracker_distance
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column logged_activities_distance
-		dataType: int64
-		formatString: 0
+		dataType: double
 		lineageTag: 801d091b-5356-42e0-ba3b-3fe57d34956d
 		summarizeBy: sum
 		sourceColumn: logged_activities_distance
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column very_active_distance
-		dataType: int64
-		formatString: 0
+		dataType: double
 		lineageTag: fc0ffa94-33c0-4880-97e3-b86350f01026
 		summarizeBy: sum
 		sourceColumn: very_active_distance
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column moderately_active_distance
-		dataType: int64
-		formatString: 0
+		dataType: double
 		lineageTag: 59d40b6c-4de8-45c2-b5a2-b064231307e8
 		summarizeBy: sum
 		sourceColumn: moderately_active_distance
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column light_active_distance
-		dataType: int64
-		formatString: 0
+		dataType: double
 		lineageTag: f31a6430-f5dd-440a-bcc7-188db1d02af5
 		summarizeBy: sum
 		sourceColumn: light_active_distance
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column sedentary_active_distance
-		dataType: int64
-		formatString: 0
+		dataType: double
 		lineageTag: 978ca40d-7700-4f57-af5b-d1b29b95d50d
 		summarizeBy: sum
 		sourceColumn: sedentary_active_distance
 
 		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column very_active_minutes
 		dataType: int64
@@ -177,7 +184,7 @@ table bellabeat_analysis_dataset
 		annotation SummarizationSetBy = Automatic
 
 	column sedentary_ratio
-		dataType: int64
+		dataType: double
 		formatString: 0
 		lineageTag: 183ce34e-9ef2-40f7-9bd5-31e872fbf7fb
 		summarizeBy: sum
@@ -259,7 +266,7 @@ table bellabeat_analysis_dataset
 		annotation SummarizationSetBy = Automatic
 
 	column time_in_bed_hours
-		dataType: int64
+		dataType: double
 		formatString: 0
 		lineageTag: c29ff443-aff0-4039-99d4-c43d8c8ee516
 		summarizeBy: sum
@@ -313,10 +320,20 @@ table bellabeat_analysis_dataset
 				let
 				  Origen = Csv.Document(File.Contents("C:\Users\genes\Desktop\Ciencia de datos\Caso-de-exito\data\processed\bellabeat_analysis_dataset.csv"), [Delimiter = ",", Columns = 30, Encoding = 65001]),
 				  #"Encabezados promovidos" = Table.PromoteHeaders(Origen, [PromoteAllScalars = true]),
-				  #"Tipo de columna cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos", {{"user_id", Int64.Type}, {"activity_date", type date}, {"total_steps", Int64.Type}, {"total_distance", Int64.Type}, {"tracker_distance", Int64.Type}, {"logged_activities_distance", Int64.Type}, {"very_active_distance", Int64.Type}, {"moderately_active_distance", Int64.Type}, {"light_active_distance", Int64.Type}, {"sedentary_active_distance", Int64.Type}, {"very_active_minutes", Int64.Type}, {"fairly_active_minutes", Int64.Type}, {"lightly_active_minutes", Int64.Type}, {"sedentary_minutes", Int64.Type}, {"calories", Int64.Type}, {"source_period", type text}, {"source_file", type text}, {"active_minutes", Int64.Type}, {"tracked_minutes", Int64.Type}, {"sedentary_ratio", Int64.Type}, {"day_of_week", type text}, {"day_order", Int64.Type}, {"activity_level", type text}, {"meets_10000_steps", type logical}, {"total_sleep_records", Int64.Type}, {"total_minutes_asleep", Int64.Type}, {"total_time_in_bed", Int64.Type}, {"sleep_hours", Int64.Type}, {"time_in_bed_hours", Int64.Type}, {"sleep_efficiency", Int64.Type}}, "es"),
-				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Tipo de columna cambiado",{{"user_id", type text}, {"activity_date", type date}, {"day_of_week", type text}, {"day_order", Int64.Type}, {"activity_level", type text}, {"sleep_hours", type number}, {"sleep_efficiency", type number}})
+				    #"Tipo cambiado con configuración regional5" = Table.TransformColumnTypes(#"Encabezados promovidos", {{"sleep_hours", type number}}, "en-US"),
+				    #"Tipo cambiado con configuración regional6" = Table.TransformColumnTypes(#"Tipo cambiado con configuración regional5", {{"time_in_bed_hours", type number}}, "en-US"),
+				    #"Tipo cambiado con configuración regional7" = Table.TransformColumnTypes(#"Tipo cambiado con configuración regional6", {{"sleep_efficiency", type number}}, "en-US"),
+				    #"Tipo cambiado con configuración regional8" = Table.TransformColumnTypes(#"Tipo cambiado con configuración regional7", {{"sedentary_ratio", type number}}, "en-US"),
+				  #"Tipo cambiado con configuración regional4" = Table.TransformColumnTypes(#"Tipo cambiado con configuración regional8", {{"sleep_hours", type number}}, "en-US"),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Tipo cambiado con configuración regional4",{{"user_id", type text}, {"activity_date", type date}, {"day_of_week", type text}, {"day_order", Int64.Type}, {"activity_level", type text}, {"sleep_hours", type number}, {"sleep_efficiency", type number}}),
+				    #"Tipo cambiado con configuración regional" = Table.TransformColumnTypes(#"Tipo cambiado", {{"sleep_hours", type number}}, "en-US"),
+				    #"Tipo cambiado1" = Table.TransformColumnTypes(#"Tipo cambiado con configuración regional",{{"time_in_bed_hours", type number}}),
+				    #"Tipo cambiado con configuración regional1" = Table.TransformColumnTypes(#"Tipo cambiado1", {{"time_in_bed_hours", type number}}, "en-US"),
+				    #"Tipo cambiado con configuración regional2" = Table.TransformColumnTypes(#"Tipo cambiado con configuración regional1", {{"sleep_efficiency", type number}}, "en-US"),
+				    #"Tipo cambiado con configuración regional3" = Table.TransformColumnTypes(#"Tipo cambiado con configuración regional2", {{"sedentary_ratio", type number}}, "en-US"),
+				    #"Tipo cambiado2" = Table.TransformColumnTypes(#"Tipo cambiado con configuración regional3",{{"total_steps", Int64.Type}, {"total_distance", type number}, {"tracker_distance", type number}, {"logged_activities_distance", type number}, {"very_active_distance", type number}, {"moderately_active_distance", type number}, {"light_active_distance", type number}, {"sedentary_active_distance", type number}, {"very_active_minutes", Int64.Type}, {"fairly_active_minutes", Int64.Type}, {"lightly_active_minutes", Int64.Type}, {"sedentary_minutes", Int64.Type}, {"calories", Int64.Type}, {"active_minutes", Int64.Type}, {"tracked_minutes", Int64.Type}, {"meets_10000_steps", type logical}, {"total_sleep_records", Int64.Type}, {"total_minutes_asleep", Int64.Type}, {"total_time_in_bed", Int64.Type}})
 				in
-				  #"Tipo cambiado"
+				  #"Tipo cambiado2"
 
 	annotation PBI_NavigationStepName = Navegación
 

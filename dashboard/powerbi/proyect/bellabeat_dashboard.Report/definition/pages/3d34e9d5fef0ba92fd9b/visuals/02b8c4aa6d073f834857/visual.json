@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "Medidas.Horas de sueño promedio",
-              "nativeQueryRef": "Horas de sueño promedio"
+              "nativeQueryRef": "Horas de sueño promedio",
+              "format": "0.00"
             }
           ]
         }

@@ -71,14 +71,21 @@ Resumen por segmento:
 
 ## Share: comunicación visual
 
-El dashboard final en Power BI debe construirse a partir de `data/processed/bellabeat_analysis_dataset.csv` y `data/processed/user_segments.csv`. La guía detallada está en `dashboard/guia_dashboard_powerbi.md`.
+El dashboard final en Power BI fue construido a partir de `data/processed/bellabeat_analysis_dataset.csv` y `data/processed/user_segments.csv`. La guía técnica de construcción se conserva en `dashboard/guia_dashboard_powerbi.md` y el archivo editable está disponible en `dashboard/powerbi/bellabeat_dashboard.pbix`.
 
-Vistas recomendadas:
+Vistas incluidas:
 
-- Actividad diaria: pasos, calorías y minutos activos.
-- Sueño: horas dormidas, tiempo en cama y eficiencia.
-- Segmentos: usuarios por nivel de actividad.
-- Implicaciones de negocio: hallazgos y recomendaciones.
+- Resumen ejecutivo: KPIs generales, pasos por día de la semana y filtros principales.
+- Actividad: tendencias de pasos, minutos activos, sedentarismo y relación entre pasos y calorías.
+- Sueño: horas de sueño, eficiencia, usuarios con registro de sueño y relación entre actividad y descanso.
+- Segmentos y recomendaciones: perfiles de usuario y acciones de marketing sugeridas por segmento.
+
+Capturas exportadas:
+
+- `dashboard/exports/01_resumen_ejecutivo.png`
+- `dashboard/exports/02_actividad.png`
+- `dashboard/exports/03_sueno.png`
+- `dashboard/exports/04_segmentos_recomendaciones.png`
 
 ## Act: recomendaciones de marketing
 
@@ -90,9 +97,9 @@ Recomendaciones para Bellabeat:
 4. Usar la app de Bellabeat para contenido educativo personalizado sobre hábitos saludables y seguimiento del progreso.
 5. Validar estas recomendaciones con datos propios de Bellabeat o pruebas A/B antes de escalar campañas.
 
-## Siguientes pasos
+## Siguientes pasos de negocio
 
-- Construir el dashboard final en Power BI siguiendo `dashboard/guia_dashboard_powerbi.md`.
-- Exportar las cuatro páginas como PNG en `dashboard/exports/`.
 - Validar recomendaciones con datos propios de Bellabeat si estuvieran disponibles.
 - Incorporar variables demográficas o encuestas para mejorar la segmentación.
+- Diseñar pruebas A/B para medir respuesta a retos, recordatorios y mensajes de descanso.
+- Medir adopción, retención y conversión por segmento antes de escalar campañas.

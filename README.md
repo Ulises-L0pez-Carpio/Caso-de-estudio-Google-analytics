@@ -6,7 +6,7 @@ Este proyecto desarrolla un caso de estudio de analítica de datos inspirado en 
 
 El objetivo es identificar patrones de actividad, sueño y uso de dispositivos inteligentes a partir del dataset público **Fitbit Fitness Tracker Data**, y traducir esos hallazgos en recomendaciones de marketing para Bellabeat.
 
-El análisis cubre datos diarios de actividad y sueño, genera datasets procesados con Python y `pandas`, produce visualizaciones exploratorias y deja una guía exacta para construir el dashboard final en Power BI.
+El análisis cubre datos diarios de actividad y sueño, genera datasets procesados con Python y `pandas`, produce visualizaciones exploratorias y presenta un dashboard final en Power BI con recomendaciones accionables.
 
 ## Problema de negocio
 
@@ -60,9 +60,9 @@ Reporte: [`reports/analysis_findings.md`](reports/analysis_findings.md)
 
 ### Share
 
-Se generaron visualizaciones exploratorias y se preparó una guía detallada para construir el dashboard final en Power BI.
+Se generaron visualizaciones exploratorias y un dashboard final en Power BI para comunicar los hallazgos a una audiencia de negocio.
 
-Guía Power BI: [`dashboard/guia_dashboard_powerbi.md`](dashboard/guia_dashboard_powerbi.md)
+Dashboard: [`dashboard/README.md`](dashboard/README.md)
 
 ### Act
 
@@ -72,19 +72,25 @@ Reporte ejecutivo: [`reports/caso_estudio_bellabeat.md`](reports/caso_estudio_be
 
 ## Dashboard Power BI
 
-El dashboard final debe construirse en Power BI Desktop usando únicamente:
+El dashboard final fue construido en Power BI Desktop usando únicamente:
 
 - `data/processed/bellabeat_analysis_dataset.csv`
 - `data/processed/user_segments.csv`
 
-La guía completa de construcción está en [`dashboard/guia_dashboard_powerbi.md`](dashboard/guia_dashboard_powerbi.md). El archivo editable debe guardarse como `dashboard/powerbi/bellabeat_dashboard.pbix` y las capturas finales deben exportarse a `dashboard/exports/`.
+Artefactos principales:
 
-Páginas definidas:
+- Archivo editable: [`dashboard/powerbi/bellabeat_dashboard.pbix`](dashboard/powerbi/bellabeat_dashboard.pbix)
+- Proyecto Power BI: [`dashboard/powerbi/proyect/bellabeat_dashboard.pbip`](dashboard/powerbi/proyect/bellabeat_dashboard.pbip)
+- Guía de construcción: [`dashboard/guia_dashboard_powerbi.md`](dashboard/guia_dashboard_powerbi.md)
 
-- Resumen ejecutivo
-- Actividad
-- Sueño
-- Segmentos y recomendaciones
+Capturas finales:
+
+- [`Resumen ejecutivo`](dashboard/exports/01_resumen_ejecutivo.png)
+- [`Actividad`](dashboard/exports/02_actividad.png)
+- [`Sueño`](dashboard/exports/03_sueno.png)
+- [`Segmentos y recomendaciones`](dashboard/exports/04_segmentos_recomendaciones.png)
+
+![Resumen ejecutivo del dashboard](dashboard/exports/01_resumen_ejecutivo.png)
 
 ## Visualizaciones exploratorias
 
@@ -153,4 +159,4 @@ Caso-de-exito/
 
 ## Estado del proyecto
 
-El análisis reproducible, los reportes y la guía del dashboard están completos. El último paso manual es construir el dashboard en Power BI Desktop, guardar el `.pbix` y exportar las cuatro capturas finales a `dashboard/exports/`.
+Proyecto finalizado para portafolio. El repositorio incluye análisis reproducible, reportes, datos procesados, dashboard Power BI, capturas finales y recomendaciones de marketing conectadas con evidencia de datos.

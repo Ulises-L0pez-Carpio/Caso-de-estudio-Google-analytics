@@ -10,7 +10,7 @@ table Medidas
 		lineageTag: 7c20fac4-aa47-4c2b-9882-8518bcf50576
 
 	measure 'Pasos promedio' = AVERAGE(bellabeat_analysis_dataset[total_steps])
-		formatString: 0
+		formatString: 0.00
 		lineageTag: d5f5327d-522c-4dc6-91c0-115be40d0b3a
 
 	measure 'Calorías promedio' = AVERAGE(bellabeat_analysis_dataset[calories])
@@ -28,17 +28,7 @@ table Medidas
 
 	measure 'Horas de sueño promedio' =
 			
-			AVERAGEX(
-			    FILTER(
-			        bellabeat_analysis_dataset,
-			        NOT(ISBLANK(bellabeat_analysis_dataset[sleep_hours]))
-			    ),
-			    IF(
-			        bellabeat_analysis_dataset[sleep_hours] > 24,
-			        bellabeat_analysis_dataset[sleep_hours] / 60,
-			        bellabeat_analysis_dataset[sleep_hours]
-			    )
-			)
+			AVERAGE(bellabeat_analysis_dataset[sleep_hours])
 		formatString: 0.00
 		lineageTag: ac16561f-75a9-424c-8279-1158fd605419
 
